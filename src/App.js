@@ -12,6 +12,7 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    // load all the books into state
     BooksAPI.getAll().then((books) => {
         this.setState({ books })
     })
@@ -20,7 +21,9 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" component={BookList} />
+        <Route exact path="/" render={() => (
+            <BookList books={this.state.books} />
+        )} />
         <Route path="/search" component={SearchPage} />
       </div>
     )
