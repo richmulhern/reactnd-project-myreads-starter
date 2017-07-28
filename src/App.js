@@ -8,22 +8,13 @@ import { Route } from 'react-router-dom';
 class BooksApp extends React.Component {
 
   state = {
-    books: [],
-    foundBooks: []
+    books: []
   }
-
-  searchForBook = this.searchForBook.bind(this);
 
   componentDidMount() {
     // load all the books into state
     BooksAPI.getAll().then((books) => {
         this.setState({ books })
-    })
-  }
-
-  searchForBook(query) {
-    BooksAPI.search(query).then((foundBooks) => {
-        this.setState({ foundBooks })
     })
   }
 
@@ -34,10 +25,7 @@ class BooksApp extends React.Component {
             <BookList books={this.state.books} />
         )} />
         <Route path="/search" render={() => (
-            <SearchPage
-                foundBooks={this.state.foundBooks}
-                searchForBook={this.searchForBook}
-            />
+            <SearchPage />
         )} />
       </div>
     )
