@@ -10,18 +10,18 @@ class BookShelf extends Component {
 
     render() {
         return(
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">{this.props.label}</h2>
-                  <div className="bookshelf-books">
+            <div className="bookshelf">
+                <h2 className="bookshelf-title">{this.props.label}</h2>
+                <div className="bookshelf-books">
                     <ol className="books-grid">
-                    {this.props.books.filter((book) => book.shelf === this.props.shelf).map((book, index) => (
-                      <li key={index}>
-                        <Book book={book} />
-                      </li>
-                    ))}
+                        {this.props.books.filter((book) => book.shelf === this.props.shelf).map((book, index) => (
+                        <li key={index}>
+                            <Book book={book} />
+                        </li>
+                        ))}
                     </ol>
-                  </div>
                 </div>
+            </div>
         );
     }
 }
