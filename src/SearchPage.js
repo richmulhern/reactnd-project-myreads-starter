@@ -9,6 +9,13 @@ class SearchPage extends Component {
     }
 
     searchForBook(query) {
+        // In the contacts example app the way this was handled was by putting the query in the state
+        // then in the render method if the query changed handle it in the render method. My problem
+        // with that is if it was a much larger app you would be putting a ton of code into the render
+        // method which seems like a bad place to put it. So here instead of just handling the query
+        // I put the books in the state. Is there a problem with this approach? It keeps the render
+        // method just for the JSX, makes the code more functional and easier to read. However the
+        // state is much larger with an array of objects over just story a query.
         if (query.trim()) {
             BooksAPI.search(query).then((foundBooks) => {
                 this.setState({ foundBooks })

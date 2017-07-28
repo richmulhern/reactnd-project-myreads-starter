@@ -11,6 +11,11 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  // One thing I wish the class was clearer on was componentDidMount and componentWillMount. During the
+  // lesson I was thinking, "Why wouldn't componentWillMount make more sense since it happens before the DOM?
+  // Don't I want my data to be there before the DOM?" I looked it up and there are some great write-ups on
+  // this, but the course doesn't explain it. It just tells you componentDidMount is the best option and to
+  // just use that. A little more clarity there would have been great.
   componentDidMount() {
     // load all the books into state
     BooksAPI.getAll().then((books) => {
