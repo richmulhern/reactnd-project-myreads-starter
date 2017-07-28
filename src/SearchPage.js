@@ -25,8 +25,8 @@ class SearchPage extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                { this.state.foundBooks.map((book) =>
-                    <li key={book.id}>
+                { this.state.foundBooks.map((book, index) =>
+                    <li key={index}>
                         <Book book={book} />
                     </li>
                 )}
