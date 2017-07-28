@@ -9,9 +9,13 @@ class SearchPage extends Component {
     }
 
     searchForBook(query) {
-        BooksAPI.search(query).then((foundBooks) => {
-            this.setState({ foundBooks })
-        })
+        if (query.trim()) {
+            BooksAPI.search(query).then((foundBooks) => {
+                this.setState({ foundBooks })
+            })
+        } else {
+            this.setState({foundBooks: []})
+        }
     }
 
     render() {
