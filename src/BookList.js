@@ -10,9 +10,24 @@ class BookList extends Component {
                 <div className="list-books-title"><h1>MyReads</h1></div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf label="Currently Reading" books={this.props.books} shelf="currentlyReading" updateBooks={this.props.updateBooks} />
-                        <BookShelf label="Want To Read" books={this.props.books} shelf="wantToRead" updateBooks={this.props.updateBooks} />
-                        <BookShelf label="Read" books={this.props.books} shelf="read" updateBooks={this.props.updateBooks} />
+                        <BookShelf
+                            label="Currently Reading"
+                            shelf="currentlyReading"
+                            books={this.props.books}
+                            updateBooks={this.props.updateBooks}
+                            removeBook={this.props.removeBook} />
+                        <BookShelf
+                            label="Want To Read"
+                            shelf="wantToRead"
+                            books={this.props.books}
+                            updateBooks={this.props.updateBooks}
+                            removeBook={this.props.removeBook} />
+                        <BookShelf
+                            label="Read"
+                            shelf="read"
+                            books={this.props.books}
+                            updateBooks={this.props.updateBooks}
+                            removeBook={this.props.removeBook} />
                     </div>
                 </div>
                 <div className="open-search">

@@ -5,11 +5,13 @@ class Book extends Component {
         const oldShelf = book.shelf
         book.shelf = shelf
 
-        if (oldShelf === 'none') {
+        if (book.shelf ==='none') {
+            return this.props.removeBook(book)
+        } else if (oldShelf === 'none') {
             return this.props.addBook(book)
-        } else {
-            return this.props.updateBooks(book)
         }
+
+        return this.props.updateBooks(book)
     }
 
     render() {
