@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 
 class Book extends Component {
     updateBook = (book, shelf) => {
-        // if the book's new shelf is not equal to the current shelf
-        // update the books in state.
+        const oldShelf = book.shelf
         book.shelf = shelf
-        this.props.updateBooks(book)
+
+        if (oldShelf === 'none') {
+            return this.props.addBook(book)
+        } else {
+            return this.props.updateBooks(book)
+        }
     }
 
     render() {
