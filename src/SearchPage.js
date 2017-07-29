@@ -8,7 +8,7 @@ class SearchPage extends Component {
         foundBooks: []
     }
 
-    searchForBook(query) {
+    searchForBook = (query) => {
         // In the contacts example app the way this was handled was by putting the query in the state
         // then in the render method if the query changed handle it in the render method. My problem
         // with that is if it was a much larger app you would be putting a ton of code into the render
@@ -18,7 +18,27 @@ class SearchPage extends Component {
         // state is much larger with an array of objects over just story a query.
         if (query.trim()) {
             BooksAPI.search(query).then((foundBooks) => {
-                this.setState({ foundBooks })
+                // The API can return an object for an empty result set.
+                if (Array.isArray(foundBooks)) {
+                    foundBooks.map(foundBook => {
+                        const ownedBook = this.props.books.find(book => {
+                            return book.id === foundBook.id
+                        })
+
+                        // if a book is already owned (on the list) then set it to that shelf if not mark
+                        // it as none. it seems the API returns some books with a shelf by default
+                        if (ownedBook !== undefined) {
+                            foundBook.shelf = ownedBook.shelf
+                        } else {
+                            foundBook.shelf = 'none'
+                        }
+
+                        return foundBook
+                    })
+                    this.setState({ foundBooks })
+                } else {
+                    this.setState({foundBooks: [] })
+                }
             })
         } else {
             this.setState({foundBooks: []})
@@ -38,7 +58,7 @@ class SearchPage extends Component {
                     <ol className="books-grid">
                         { this.state.foundBooks.map((book, index) =>
                         <li key={index}>
-                            <Book book={book} />
+                            <Book book={book} updateBooks={this.props.updateBooks} />
                         </li>
                         )}
                   </ol>

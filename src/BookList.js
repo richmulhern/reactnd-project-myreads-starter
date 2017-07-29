@@ -10,9 +10,9 @@ class BookList extends Component {
                 <div className="list-books-title"><h1>MyReads</h1></div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf label="Currently Reading" books={this.props.books} shelf="currentlyReading" />
-                        <BookShelf label="Want To Read" books={this.props.books} shelf="wantToRead" />
-                        <BookShelf label="Read" books={this.props.books} shelf="read" />
+                        <BookShelf label="Currently Reading" books={this.props.books} shelf="currentlyReading" updateBooks={this.props.updateBooks} />
+                        <BookShelf label="Want To Read" books={this.props.books} shelf="wantToRead" updateBooks={this.props.updateBooks} />
+                        <BookShelf label="Read" books={this.props.books} shelf="read" updateBooks={this.props.updateBooks} />
                     </div>
                 </div>
                 <div className="open-search">
