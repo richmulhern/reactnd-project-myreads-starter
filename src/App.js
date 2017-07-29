@@ -24,6 +24,10 @@ class BooksApp extends React.Component {
     }
 
     updateBooks = (book) => {
+        if (book.shelf === 'none') {
+            return this.removeBook(book)
+        }
+
         const oldBooks = this.state.books
         const books = oldBooks
             .map(oldBook => {
@@ -54,14 +58,12 @@ class BooksApp extends React.Component {
                 <Route exact path="/" render={() => (
                     <BookList
                         books={this.state.books}
-                        updateBooks={this.updateBooks}
-                        removeBook={this.removeBook} />
+                        updateBooks={this.updateBooks} />
                 )} />
                 <Route path="/search" render={() => (
                     <SearchPage
                         books={this.state.books}
                         updateBooks={this.updateBooks}
-                        removeBook={this.removeBook}
                         addBook={this.addBook} />
                 )} />
             </div>

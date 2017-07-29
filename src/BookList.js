@@ -14,20 +14,17 @@ class BookList extends Component {
                             label="Currently Reading"
                             shelf="currentlyReading"
                             books={this.props.books}
-                            updateBooks={this.props.updateBooks}
-                            removeBook={this.props.removeBook} />
+                            updateBooks={this.props.updateBooks} />
                         <BookShelf
                             label="Want To Read"
                             shelf="wantToRead"
                             books={this.props.books}
-                            updateBooks={this.props.updateBooks}
-                            removeBook={this.props.removeBook} />
+                            updateBooks={this.props.updateBooks} />
                         <BookShelf
                             label="Read"
                             shelf="read"
                             books={this.props.books}
-                            updateBooks={this.props.updateBooks}
-                            removeBook={this.props.removeBook} />
+                            updateBooks={this.props.updateBooks} />
                     </div>
                 </div>
                 <div className="open-search">

@@ -18,8 +18,7 @@ class BookShelf extends Component {
                         <li key={index}>
                             <Book
                                 book={book}
-                                updateBooks={this.props.updateBooks}
-                                removeBook={this.props.removeBook} />
+                                updateBooks={this.props.updateBooks} />
                         </li>
                         ))}
                     </ol>

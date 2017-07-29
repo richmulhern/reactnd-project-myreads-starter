@@ -5,9 +5,7 @@ class Book extends Component {
         const oldShelf = book.shelf
         book.shelf = shelf
 
-        if (book.shelf ==='none') {
-            return this.props.removeBook(book)
-        } else if (oldShelf === 'none') {
+        if (oldShelf === 'none') {
             return this.props.addBook(book)
         }
 

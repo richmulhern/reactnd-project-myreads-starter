@@ -61,8 +61,7 @@ class SearchPage extends Component {
                             <Book
                                 book={book}
                                 addBook={this.props.addBook}
-                                updateBooks={this.props.updateBooks}
-                                removeBook={this.props.removeBook} />
+                                updateBooks={this.props.updateBooks} />
                         </li>
                         )}
                   </ol>
