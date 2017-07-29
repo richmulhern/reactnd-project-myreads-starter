@@ -60,7 +60,6 @@ class SearchPage extends Component {
                         <li key={index}>
                             <Book
                                 book={book}
-                                addBook={this.props.addBook}
                                 updateBooks={this.props.updateBooks} />
                         </li>
                         )}

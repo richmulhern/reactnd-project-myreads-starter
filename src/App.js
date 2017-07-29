@@ -23,9 +23,16 @@ class BooksApp extends React.Component {
         })
     }
 
-    updateBooks = (book) => {
-        if (book.shelf === 'none') {
+    updateBooks = (book, shelf) => {
+        if (shelf === 'none') {
             return this.removeBook(book)
+        }
+
+        const oldShelf = book.shelf
+        book.shelf = shelf
+
+        if (oldShelf === 'none') {
+            return this.addBook(book);
         }
 
         const oldBooks = this.state.books
@@ -63,8 +70,7 @@ class BooksApp extends React.Component {
                 <Route path="/search" render={() => (
                     <SearchPage
                         books={this.state.books}
-                        updateBooks={this.updateBooks}
-                        addBook={this.addBook} />
+                        updateBooks={this.updateBooks} />
                 )} />
             </div>
         )
