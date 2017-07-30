@@ -135,6 +135,17 @@ body, .app {
 .book-authors {
   font-size: 0.8em;
 }
+
+.book-title a {
+    color: #666;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.book-title a:hover {
+    color: #222;
+}
+
 .book-title {
   margin-top: 10px;
 }
@@ -192,3 +203,62 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* detail page */
+.ReactModalPortal header {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-info {
+    margin-left: 10px;
+}
+
+.book-info * {
+    margin: 0;
+    padding: 0;
+}
+
+.book-info h1 {
+    font-size: 20px;
+}
+
+.book-info h2 {
+    font-size: 18px;
+}
+
+.book-info h3 {
+    font-size: 16px;
+    color: #666;
+}
+
+.book-info h4 {
+    font-size: 16px;
+    color: #666;
+}
+
+.close-modal a {
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ccc;
+    background-image: url('./icons/add.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px;
+    font-size: 0;
+    transform: rotate(45deg);
+    transition: all .2s;
+    top: 10px;
+    right: 10px;
+}
+
+.close-modal a:hover {
+    height: 40px;
+    width: 40px;
+    top: 15px;
+    right: 15px;
+}
+
