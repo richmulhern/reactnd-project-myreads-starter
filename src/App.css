@@ -262,3 +262,7 @@ body, .app {
     right: 15px;
 }
 
+.ReactModalPortal .book-shelf-changer {
+    bottom: 10px;
+    right: 10px;
+}

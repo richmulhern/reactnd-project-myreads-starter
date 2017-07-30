@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Modal from 'react-modal'
 import { Link } from 'react-router-dom'
+import Changer from './Changer'
 
 class Detail extends Component {
     state = {
@@ -19,6 +20,7 @@ class Detail extends Component {
             this.setState({book})
         )
     }
+
     render() {
         const {book} = this.state
 
@@ -35,6 +37,7 @@ class Detail extends Component {
                     <p>{book.description}</p>
                 </header>
                 <div className="close-modal"><Link to="/">Close</Link></div>
+                <Changer book={book} updateBooks={this.props.updateBooks} />
             </Modal>
         )
     }

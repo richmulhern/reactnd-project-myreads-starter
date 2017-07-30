@@ -79,7 +79,9 @@ class BooksApp extends React.Component {
                         books={this.state.books}
                         updateBooks={this.updateBooks} />
                 )} />
-                <Route path="/book/:id" component={Detail} />
+                <Route path="/book/:id" render={props => (
+                    <Detail {...props} updateBooks={this.updateBooks} />
+                )} />
             </div>
         )
     }
