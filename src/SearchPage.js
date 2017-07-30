@@ -5,7 +5,14 @@ import Book from './Book'
 
 class SearchPage extends Component {
     state = {
-        foundBooks: []
+        foundBooks: [],
+        query: this.props.match.params.query
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.getBooks()
     }
 
     searchForBook = (query) => {
@@ -16,33 +23,41 @@ class SearchPage extends Component {
         // I put the books in the state. Is there a problem with this approach? It keeps the render
         // method just for the JSX, makes the code more functional and easier to read. However the
         // state is much larger with an array of objects over just story a query.
+
+        const {history} = this.props;
         if (query.trim()) {
-            BooksAPI.search(query).then((foundBooks) => {
-                // The API can return an object for an empty result set.
-                if (Array.isArray(foundBooks)) {
-                    foundBooks.map(foundBook => {
-                        const ownedBook = this.props.books.find(book => {
-                            return book.id === foundBook.id
-                        })
-
-                        // if a book is already owned (on the list) then set it to that shelf if not mark
-                        // it as none. it seems the API returns some books with a shelf by default
-                        if (ownedBook !== undefined) {
-                            foundBook.shelf = ownedBook.shelf
-                        } else {
-                            foundBook.shelf = 'none'
-                        }
-
-                        return foundBook
-                    })
-                    this.setState({ foundBooks })
-                } else {
-                    this.setState({foundBooks: [] })
-                }
-            })
+            history.push(`/search/${query}`)
+            this.setState({query});
+            return this.getBooks();
         } else {
             this.setState({foundBooks: []})
         }
+    }
+
+    getBooks = () => {
+        BooksAPI.search(this.state.query).then((foundBooks) => {
+            // The API can return an object for an empty result set.
+            if (Array.isArray(foundBooks)) {
+                foundBooks.map(foundBook => {
+                    const ownedBook = this.props.books.find(book => {
+                        return book.id === foundBook.id
+                    })
+
+                    // if a book is already owned (on the list) then set it to that shelf if not mark
+                    // it as none. it seems the API returns some books with a shelf by default
+                    if (ownedBook !== undefined) {
+                        foundBook.shelf = ownedBook.shelf
+                    } else {
+                        foundBook.shelf = 'none'
+                    }
+
+                    return foundBook
+                })
+                this.setState({ foundBooks })
+            } else {
+                this.setState({foundBooks: [] })
+            }
+        })
     }
 
     render() {
