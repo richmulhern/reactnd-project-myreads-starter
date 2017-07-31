@@ -20,7 +20,7 @@ class SearchPage extends Component {
     }
 
     componentDidMount() {
-        this.searchForBook(this.props.match.params.query);
+        this.searchForBook(this.props.match.params.query ? this.props.match.params.query : '');
     }
 
     searchForBook = (query) => {
