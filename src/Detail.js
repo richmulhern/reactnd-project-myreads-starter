@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import * as BooksAPI from './BooksAPI'
 import Modal from 'react-modal'
+import PropTypes from 'prop-types'
 import Changer from './Changer'
 
 class Detail extends Component {
+    static propTypes = {
+        updateBooks: PropTypes.func.isRequired
+    }
+
     state = {
         book: []
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Changer from './Changer'
+import PropTypes from 'prop-types'
 
 function Book(props) {
     const {book} = props;
@@ -15,6 +16,11 @@ function Book(props) {
             <div className="book-authors">{book.authors !== undefined ? book.authors.join(', ') : ''}</div>
         </div>
     )
+}
+
+Book.propTypes = {
+    book: PropTypes.object.isRequired,
+    updateBooks: PropTypes.func.isRequired
 }
 
 export default Book;

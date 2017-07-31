@@ -1,21 +1,29 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 class SearchPage extends Component {
+    static propTypes = {
+        books: PropTypes.arrayOf(PropTypes.object).isRequired,
+        updateBooks: PropTypes.func.isRequired
+    }
+
     constructor(props) {
         super(props);
 
         this.state = {
             foundBooks: [],
-            query: this.props.match.params.query ? this.props.match.params.query : ''
+            query: ''
         }
-
-        this.getBooks()
     }
 
-    searchForBook = (event) => {
+    componentDidMount() {
+        this.searchForBook(this.props.match.params.query);
+    }
+
+    searchForBook = (query) => {
         // In the contacts example app the way this was handled was by putting the query in the state
         // then in the render method if the query changed handle it in the render method. My problem
         // with that is if it was a much larger app you would be putting a ton of code into the render
@@ -24,7 +32,8 @@ class SearchPage extends Component {
         // method just for the JSX, makes the code more functional and easier to read. However the
         // state is much larger with an array of objects over just story a query.
 
-        this.setState({query: event.target.value.trim()}, this.getBooks);
+        this.setState({query: query.trim()}, this.getBooks);
+        this.props.history.push(`/search/${query.trim()}`);
     }
 
     getBooks = () => {
@@ -64,7 +73,7 @@ class SearchPage extends Component {
                             type="text"
                             value={this.state.query}
                             placeholder="Search by title or author"
-                            onChange={this.searchForBook} />
+                            onChange={(event) => this.searchForBook(event.target.value)} />
                     </div>
                 </div>
                 <div className="search-books-results">
