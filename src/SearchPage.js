@@ -4,18 +4,18 @@ import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
 class SearchPage extends Component {
-    state = {
-        foundBooks: [],
-        query: this.props.match.params.query
-    }
-
     constructor(props) {
         super(props);
+
+        this.state = {
+            foundBooks: [],
+            query: this.props.match.params.query ? this.props.match.params.query : ''
+        }
 
         this.getBooks()
     }
 
-    searchForBook = (query) => {
+    searchForBook = (event) => {
         // In the contacts example app the way this was handled was by putting the query in the state
         // then in the render method if the query changed handle it in the render method. My problem
         // with that is if it was a much larger app you would be putting a ton of code into the render
@@ -24,14 +24,7 @@ class SearchPage extends Component {
         // method just for the JSX, makes the code more functional and easier to read. However the
         // state is much larger with an array of objects over just story a query.
 
-        const {history} = this.props;
-        if (query.trim()) {
-            history.push(`/search/${query}`)
-            this.setState({query});
-            return this.getBooks();
-        } else {
-            this.setState({foundBooks: []})
-        }
+        this.setState({query: event.target.value.trim()}, this.getBooks);
     }
 
     getBooks = () => {
@@ -61,12 +54,17 @@ class SearchPage extends Component {
     }
 
     render() {
+
         return(
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link to="/" className="close-search">Close</Link>
                     <div className="search-books-input-wrapper">
-                        <input type="text" placeholder="Search by title or author" onChange={(event) => this.searchForBook(event.target.value)}/>
+                        <input
+                            type="text"
+                            value={this.state.query}
+                            placeholder="Search by title or author"
+                            onChange={this.searchForBook} />
                     </div>
                 </div>
                 <div className="search-books-results">
