@@ -32,8 +32,8 @@ class SearchPage extends Component {
         // method just for the JSX, makes the code more functional and easier to read. However the
         // state is much larger with an array of objects over just story a query.
 
-        this.setState({query: query.trim()}, this.getBooks);
-        this.props.history.push(`/search/${query.trim()}`);
+        this.setState({query: query}, this.getBooks);
+        this.props.history.push(`/search/${query}`);
     }
 
     getBooks = () => {
