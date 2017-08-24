@@ -5,11 +5,11 @@ import PropTypes from 'prop-types'
 
 function Book(props) {
     const {book} = props;
-
+    const backgroundImage = book.imageLinks ? `url("${book.imageLinks.thumbnail}")` : 'none';
     return(
         <div className="book">
             <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.thumbnail}")` }}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: backgroundImage }}></div>
                     <Changer book={book} updateBooks={props.updateBooks} />
                 </div>
             <div className="book-title"><Link to={`/book/${book.id}`}>{book.title}</Link></div>
