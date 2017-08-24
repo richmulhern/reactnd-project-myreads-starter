@@ -32,21 +32,23 @@ class BooksApp extends React.Component {
         const oldShelf = book.shelf
         book.shelf = shelf
 
-        if (oldShelf === 'none') {
-            return this.addBook(book);
-        }
+        BooksAPI.update(book, shelf).then(success => {
+            if (oldShelf === 'none') {
+                return this.addBook(book);
+            }
 
-        const oldBooks = this.state.books
-        const books = oldBooks
-            .map(oldBook => {
-                if (oldBook.id === book.id) {
-                    oldBook.shelf = book.shelf
-                }
+            const oldBooks = this.state.books
+            const books = oldBooks
+                .map(oldBook => {
+                    if (oldBook.id === book.id) {
+                        oldBook.shelf = book.shelf
+                    }
 
-                return oldBook
-            })
+                    return oldBook
+                })
 
-        this.setState({ books })
+            this.setState({ books });
+        });
     }
 
     addBook = (book) => {
